@@ -1,0 +1,23 @@
+# git
+.git
+.github
+.gitattributes
+.gitignore
+
+# python
+*.egg-info
+__pycache__
+docs
+tests
+
+# containers
+Dockerfile
+docker-compose.yml
+singularity-compose.yml
+*.sif
+
+# volumes
+volumes
+
+# containers
+containers/mongodb

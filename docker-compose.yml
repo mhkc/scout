@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  db:
+    image: mongo
+    volumes:
+      - ./volumes/mongodb/data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - scout-net
+  web:
+    build:
+      context: .
+      dockerfile: containers/scout.dockerfile
+    volumes:
+      - .:/scout
+    environment:
+      FLASK_ENV: development
+    command: ["./wait-for-it.sh", "db:27017", "--", "scout", "--demo", "serve"]
+    ports:
+      - 5000:5000
+    networks:
+      - scout-net
+    depends_on:
+      - db
+networks:
+  scout-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.21.0.0/24
