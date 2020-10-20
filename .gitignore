@@ -72,6 +72,10 @@ pylintrc
 scripts/local
 *sqlite
 
+#Docker
+volumes/mongodb/data/*
+!volumes/mongodb/data/.gitkeep
+
 # Emacs (Just so I don't have to see them green in Atom ;-)
 *~
 *#
